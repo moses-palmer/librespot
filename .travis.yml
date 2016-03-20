@@ -2,6 +2,7 @@ language: rust
 rust:
   - stable
   - beta
+  - nightly-2016-03-17 # Last known to be working nightly
   - nightly
 
 addons:
@@ -15,6 +16,7 @@ script:
     - cargo build --no-default-features --features "with-syntex with-tremor"
     - cargo build --no-default-features --features "with-syntex facebook"
     - cargo build --no-default-features --features "with-syntex portaudio-backend"
+    - echo "$TRAVIS_RUST_VERSION"
     # Building without syntex only works on nightly
     - if [[ $(rustc --version) == *"nightly"* ]]; then
         cargo build --no-default-features;
